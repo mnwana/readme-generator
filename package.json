@@ -1,0 +1,19 @@
+{
+  "name": "readme-generator",
+  "version": "1.0.0",
+  "description": "program that generates a readme file for a project",
+  "main": "app.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/mnwana/readme-generator.git"
+  },
+  "author": "Marielle Nwana",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/mnwana/readme-generator/issues"
+  },
+  "homepage": "https://github.com/mnwana/readme-generator#readme"
+}
