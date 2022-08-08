@@ -56,7 +56,7 @@ function renderContents(data) {
   if (data.tests) {
     contents += `\n - [Tests](#tests)`;
   }
-  if (data.contact) {
+  if (data.confirmEmail || data.confirmSite) {
     contents += `\n - [Contact](#contact)`;
   }
   return contents;
@@ -139,13 +139,14 @@ function renderTests(tests) {
 //  function to generate how to contribute section
 function renderContact(data) {
   var contactText = ``;
-  if (data.contact) {
-    contactText += `## Contact Us`;
+  if (data.confirmEmail || data.confirmSite) {
+    contactText += `## Contact`;
+    // TODO: make hyperlinks
     if (data.contactSite) {
-      contactText += ` - Website: ${data.contactSite}`;
+      contactText += `\n - Website: ${data.contactSite}`;
     }
     if (data.contactEmail) {
-      contactText += ` - Email: ${data.contactEmail}`;
+      contactText += `\n - Email: ${data.contactEmail}`;
     }
   }
   return contactText;
@@ -180,4 +181,4 @@ ${renderLicenseBadge(data.license)}
 `;
 }
 
-module.exports = {generateMarkdown, licenses};
+module.exports = { generateMarkdown, licenses };

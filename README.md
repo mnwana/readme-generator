@@ -9,6 +9,7 @@
  - [Usage](#usage)
  - [Credits](#credits)
  - [Tests](#tests)
+ - [Contact](#contact)
 
 ## Installation 
  Please install Node.js then download the contents of this repository.
@@ -30,7 +31,9 @@
 ## Tests 
  There are currently no tests for this application.
 
-
+## Contact
+ - Website: mariellenwana.com
+ - Email: mariellenwana@gmail.com
 
  
  ![MIT license badge](https://img.shields.io/badge/license-mit-blue)
