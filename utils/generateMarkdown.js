@@ -98,7 +98,7 @@ function renderContributors(contributors) {
   if (contributors.length > 0) {
     creditsText += `## Credits \n ${credits}`;
     contributors.forEach(contributor => {
-      creditsText += `[${contributor.name}](https://${contributor.username}.github.com)`
+      creditsText += `\n -[${contributor.name}](https://${contributor.username}.github.com)`
     })
   }
   return creditsText;
