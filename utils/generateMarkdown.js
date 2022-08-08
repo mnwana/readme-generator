@@ -84,6 +84,24 @@ function renderTests(tests) {
   return testsText;
 }
 
+//  function to generate how to contribute section
+function renderContact(data) {
+    var contactText = ``
+    if (data.contact) {
+        contactText += `## Contact Us`;
+        if(data.contactSite){
+            contactText += ` - Website: ${data.contactSite}`;
+        }
+        if(data.contactEmail){
+            contactText += ` - Email: ${data.contactEmail}`;
+        }
+        if(data.contactPhone){
+            contactText += ` - Phone: ${data.contactPhone}`;
+        }
+    }
+    return contactText;
+  }
+
 // function to generate markdown for README
 function generateMarkdown(data) {
   return `
@@ -106,6 +124,8 @@ ${renderLicenseBadge(data.licenseChoice, data.licenseFreeform)}
 ${renderContribute(data.contribute)}
 
 ${renderTests(data.tests)}
+
+${renderContact(data)}
 `;
 }
 
