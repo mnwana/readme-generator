@@ -1,16 +1,4 @@
-// function to return a license badge based on which license is passed in and ifthere is no license, returns an empty string
-function renderLicenseBadge(license, licenseFreeform) {
-  if (!license) {
-    return "";
-  }
-  return `
-  ## Badges
-
-  ![${license} license badge](https://img.shields.io/badge/license-${license}-blue)`;
-}
-
 // function to create table of contents based on data values
-// TODO: update to include all possible values 
 function renderContents(data) {
   var contents = `## Table of Contents`;
   if (data.installation) {
@@ -19,13 +7,40 @@ function renderContents(data) {
   if (data.usage) {
     contents += `\n - [Usage](#usage)`;
   }
-  if (data.credits) {
+  if (data.contributingAuthors) {
     contents += `\n - [Credits](#credits)`;
   }
   if (data.licenseChoice) {
     contents += `\n - [License](#license)`;
   }
+  if (data.contribute) {
+    contents += `\n - [Contribute](#contribute)`;
+  }
+  if (data.tests) {
+    contents += `\n - [Tests](#tests)`;
+  }
+  if (data.contact) {
+    contents += `\n - [Contact](#contact)`;
+  }
   return contents;
+}
+
+//  function to generate installation section
+function renderDescription(description) {
+  var descriptionText = ``;
+  if (description) {
+    descriptionText += `## Description \n ${description}`;
+  }
+  return descriptionText;
+}
+
+//  function to generate installation section
+function renderInstallation(installation) {
+  var installationText = ``;
+  if (installation) {
+    installationText += `## Installation \n ${installation}`;
+  }
+  return installationText;
 }
 
 //  function to generate usage section including description and optional screen shot
@@ -40,33 +55,6 @@ function renderUsage(data) {
   return usage;
 }
 
-//  function to generate installation section
-function renderInstallation(installation) {
-  var installationText = ``;
-  if (installation) {
-    installationText += `## Installation \n ${installation}`;
-  }
-  return installationText;
-}
-
-//  function to generate installation section
-function renderLicense(licenseChoice,licenseFreeform) {
-    var licenseText = ``;
-    if (licenseChoice) {
-        licenseText += `## License \n Licensed ${licenseChoice}`;
-    }
-    return licenseText;
-  }
-
-//  function to generate installation section
-function renderDescription(description) {
-  var descriptionText = ``;
-  if (description) {
-    descriptionText += `## Description \n ${description}`;
-  }
-  return descriptionText;
-}
-
 //  function to generate credits section
 function renderCredits(credits) {
   var creditsText = ``;
@@ -76,11 +64,31 @@ function renderCredits(credits) {
   return creditsText;
 }
 
+//  function to generate installation section
+function renderLicense(licenseChoice, licenseFreeform) {
+  var licenseText = ``;
+  if (licenseChoice) {
+    licenseText += `## License \n Licensed ${licenseChoice}`;
+  }
+  return licenseText;
+}
+
+// function to return a license badge based on which license is passed in and ifthere is no license, returns an empty string
+function renderLicenseBadge(license, licenseFreeform) {
+  if (!license) {
+    return "";
+  }
+  return `
+  ## Badges
+
+  ![${license} license badge](https://img.shields.io/badge/license-${license}-blue)`;
+}
+
 //  function to generate how to contribute section
 function renderContribute(contribute) {
   var contributeText = ``;
   if (contribute) {
-    contributeText +=  `## How to Contribute \n ${contribute}`;
+    contributeText += `## How to Contribute \n ${contribute}`;
   }
   return contributeText;
 }
@@ -96,21 +104,21 @@ function renderTests(tests) {
 
 //  function to generate how to contribute section
 function renderContact(data) {
-    var contactText = ``
-    if (data.contact) {
-        contactText += `## Contact Us`;
-        if(data.contactSite){
-            contactText += ` - Website: ${data.contactSite}`;
-        }
-        if(data.contactEmail){
-            contactText += ` - Email: ${data.contactEmail}`;
-        }
-        if(data.contactPhone){
-            contactText += ` - Phone: ${data.contactPhone}`;
-        }
+  var contactText = ``;
+  if (data.contact) {
+    contactText += `## Contact Us`;
+    if (data.contactSite) {
+      contactText += ` - Website: ${data.contactSite}`;
     }
-    return contactText;
+    if (data.contactEmail) {
+      contactText += ` - Email: ${data.contactEmail}`;
+    }
+    if (data.contactPhone) {
+      contactText += ` - Phone: ${data.contactPhone}`;
+    }
   }
+  return contactText;
+}
 
 // function to generate markdown for README
 function generateMarkdown(data) {
@@ -127,17 +135,17 @@ ${renderUsage(data)}
 
 ${renderCredits(data.contributingAuthors)}
 
-${renderLicense(data.licenseChoice,data.licenseFreeform)}
+${renderLicense(data.licenseChoice, data.licenseFreeform)}
 
 ---
-
-${renderLicenseBadge(data.licenseChoice, data.licenseFreeform)}
 
 ${renderContribute(data.contribute)}
 
 ${renderTests(data.tests)}
 
 ${renderContact(data)}
+
+${renderLicenseBadge(data.licenseChoice, data.licenseFreeform)}
 `;
 }
 
