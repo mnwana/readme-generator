@@ -49,6 +49,15 @@ function renderInstallation(installation) {
 }
 
 //  function to generate installation section
+function renderLicense(licenseChoice,licenseFreeform) {
+    var licenseText = ``;
+    if (licenseChoice) {
+        licenseText += `## License \n Licensed ${licenseChoice}`;
+    }
+    return licenseText;
+  }
+
+//  function to generate installation section
 function renderDescription(description) {
   var descriptionText = ``;
   if (description) {
@@ -116,6 +125,8 @@ ${renderInstallation(data.installation)}
 ${renderUsage(data)}
 
 ${renderCredits(data.contributingAuthors)}
+
+${renderLicense(data.licenseChoice,data.licenseFreeform)}
 
 ---
 

@@ -20,6 +20,9 @@
 ## Credits 
  d
 
+## License 
+ Licensed MIT
+
 ---
 
 
