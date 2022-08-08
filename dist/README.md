@@ -15,8 +15,9 @@ d
 d
 
 ## Usage
-
-d
+ d
+ 
+ ![screen shot of d](/assets/images/screenshot.png)
 
 ## Credits
 

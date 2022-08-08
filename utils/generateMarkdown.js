@@ -1,4 +1,4 @@
-// function that returns a license badge based on which license is passed in and ifthere is no license, returns an empty string
+// function to return a license badge based on which license is passed in and ifthere is no license, returns an empty string
 function renderLicenseBadge(license,licenseFreeform) {
   if (!license) {
     return "";
@@ -6,6 +6,7 @@ function renderLicenseBadge(license,licenseFreeform) {
   return `![${license} license badge](https://img.shields.io/badge/license-${license}-blue)`;
 }
 
+// function to create table of contents based on data values
 function renderContents(data){
     var contents = `## Table of Contents`;
     if(data.installation){
@@ -21,10 +22,21 @@ function renderContents(data){
         contents += `\n - [License](#license)`;
     }
     return contents;
-    ``
-}
+};
 
-// TODO: Create a function to generate markdown for README
+function renderUsage(data){
+    var usage = `## Usage`;
+    if(data.usage){
+        usage += `\n ${data.usage}`;
+    }
+    if(data.screenshotConfirm){
+        usage+= `\n \n ![screen shot of ${data.projectTitle}](${data.screenshotLocation})`;
+    }
+    return usage;
+};
+
+
+// function to generate markdown for README
 function generateMarkdown(data) {
   return `
 # ${data.projectTitle}
@@ -39,9 +51,7 @@ ${renderContents(data)}
 
 ${data.installation}
 
-## Usage
-
-${data.usage}
+${renderUsage(data)}
 
 ## Credits
 

@@ -38,7 +38,7 @@ const mockData = {
   installation: "d",
   usage: "d",
   screenshotConfirm: true,
-  screenshotLocation: "./assets/images/screenshot.png",
+  screenshotLocation: "/assets/images/screenshot.png",
   contributingAuthors: "d",
   licenseChoice: "MIT",
   userName: "d",
