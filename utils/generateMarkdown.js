@@ -29,9 +29,9 @@ function renderContents(data) {
 
 //  function to generate usage section including description and optional screen shot
 function renderUsage(data) {
-  var usage = `## Usage`;
+  var usage = ``;
   if (data.usage) {
-    usage += `\n ${data.usage}`;
+    usage += `## Usage \n ${data.usage}`;
   }
   if (data.screenshotConfirm) {
     usage += `\n \n ![screen shot of ${data.projectTitle}](${data.screenshotLocation})`;
@@ -41,45 +41,45 @@ function renderUsage(data) {
 
 //  function to generate installation section
 function renderInstallation(installation) {
-  var installationText = `## Installation`;
+  var installationText = ``;
   if (installation) {
-    installationText += `\n ${installation}`;
+    installationText += `## Installation \n ${installation}`;
   }
   return installationText;
 }
 
 //  function to generate installation section
 function renderDescription(description) {
-  var descriptionText = `## Description`;
+  var descriptionText = ``;
   if (description) {
-    descriptionText += `\n ${description}`;
+    descriptionText += `## Description \n ${description}`;
   }
   return descriptionText;
 }
 
 //  function to generate credits section
 function renderCredits(credits) {
-  var creditsText = `## Credits`;
+  var creditsText = ``;
   if (credits) {
-    creditsText += `\n ${credits}`;
+    creditsText += `## Credits \n ${credits}`;
   }
   return creditsText;
 }
 
 //  function to generate how to contribute section
 function renderContribute(contribute) {
-  var contributeText = `## How to Contribute`;
+  var contributeText = ``;
   if (contribute) {
-    contributeText += `\n ${contribute}`;
+    contributeText +=  `## How to Contribute \n ${contribute}`;
   }
   return contributeText;
 }
 
 //  function to generate how to contribute section
 function renderTests(tests) {
-  var testsText = `## Tests`;
+  var testsText = ``;
   if (tests) {
-    testsText += `\n ${tests}`;
+    testsText += `## Tests \n ${tests}`;
   }
   return testsText;
 }

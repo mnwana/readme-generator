@@ -1,38 +1,34 @@
 
 # d
 
-## Description
-
-d
+## Description 
+ d
 
 ## Table of Contents
  - [Installation](#installation)
  - [Usage](#usage)
  - [License](#license)
 
-## Installation
+## Installation 
+ d
 
-d
-
-## Usage
+## Usage 
  d
  
  ![screen shot of d](/assets/images/screenshot.png)
 
-## Credits
-
-d
+## Credits 
+ d
 
 ---
 
-## Badges
 
-![MIT license badge](https://img.shields.io/badge/license-MIT-blue)
+  ## Badges
 
-
-## How to Contribute
+  ![MIT license badge](https://img.shields.io/badge/license-MIT-blue)
 
 
-## Tests
 
-undefined
+
+
+
