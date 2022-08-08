@@ -24,6 +24,7 @@ function renderContents(data){
     return contents;
 };
 
+//  function to generate usage section including description and optional screen shot
 function renderUsage(data){
     var usage = `## Usage`;
     if(data.usage){
@@ -36,6 +37,15 @@ function renderUsage(data){
 };
 
 
+//  function to generate usage section including description and optional screen shot
+function renderInstallation(installation){
+    var installation = `## Installation`;
+    if(installation){
+        installation += `\n ${installation}`;
+    }
+    return installation;
+};
+
 // function to generate markdown for README
 function generateMarkdown(data) {
   return `
@@ -47,9 +57,7 @@ ${data.description}
 
 ${renderContents(data)}
 
-## Installation
-
-${data.installation}
+${renderInstallation(data.installation)}
 
 ${renderUsage(data)}
 
