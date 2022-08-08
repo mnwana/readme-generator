@@ -35,7 +35,7 @@ const mockData = {
   name: "d",
   projectTitle: "d",
   description: "d",
-  installatiom: "d",
+  installation: "d",
   usage: "d",
   screenshotConfirm: true,
   screenshotLocation: "./assets/images/screenshot.png",
@@ -93,7 +93,7 @@ const promptUser = () => {
     // installation
     {
       type: "input",
-      name: "installatiom",
+      name: "installation",
       message: "Please enter a installation instructions",
       validate: (instructionInput) => {
         if (instructionInput) {
@@ -150,7 +150,7 @@ const promptUser = () => {
     // tests
     {
       type: "input",
-      name: "name",
+      name: "tests",
       message: "Plese enter how to run a test",
       default: "",
     },
