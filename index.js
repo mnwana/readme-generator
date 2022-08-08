@@ -29,7 +29,7 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
 
-// TODO: Create an array of questions for user input
+
 
 const promptUser = () => {
   return inquirer.prompt([
@@ -82,10 +82,10 @@ const promptUser = () => {
 
 // email address
 
-// TODO: Create a function to write README file
-function writeToFile(fileName, data) {
+//function to write README file with file destination and file content as paameters
+function writeToFile(fileName, fileData) {
   return new Promise((resolve, reject) => {
-    fs.writeFile(fileName, data, (err) => {
+    fs.writeFile(fileName, fileData, (err) => {
       if (err) {
         reject(error);
         return;
@@ -98,14 +98,17 @@ function writeToFile(fileName, data) {
   });
 }
 
-// TODO: Create a function to initialize app
+//function to initialize app
 function init() {
-    promptUser()
+  // get user input
+  promptUser()
     .then((readmeData) => {
+      // get readme text
       return generateMarkdown(readmeData);
     })
+    // write readme to file
     .then((readmeContent) => {
-      return writeToFile('./dist/README.md',readmeContent);
+      return writeToFile("./dist/README.md", readmeContent);
     });
 }
 
