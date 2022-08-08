@@ -26,7 +26,7 @@ THEN I am taken to the corresponding section of the README
 */
 
 const fs = require("fs");
-const inquirer = require("requirer");
+const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
 
 // TODO: Create an array of questions for user input
@@ -100,12 +100,12 @@ function writeToFile(fileName, data) {
 
 // TODO: Create a function to initialize app
 function init() {
-  promptUser
+    promptUser()
     .then((readmeData) => {
       return generateMarkdown(readmeData);
     })
     .then((readmeContent) => {
-      return writeFile(readmeContent);
+      return writeToFile('./dist/README.md',readmeContent);
     });
 }
 
