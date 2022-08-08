@@ -1,8 +1,8 @@
 
-# d
+# README Generator
 
 ## Description 
- d
+ A Node application that prompts a user for project information and generates a README file about that project
 
 ## Table of Contents
  - [Installation](#installation)
@@ -10,15 +10,15 @@
  - [License](#license)
 
 ## Installation 
- d
+ Please install Node.js then download the contents of this repository.
 
 ## Usage 
- d
+ Once installed, you can run npm init, then run "node index"  in order to run the program.
  
- ![screen shot of d](/assets/images/screenshot.png)
+ ![screen shot of README Generator](/assets/images/screenshot.png)
 
 ## Credits 
- d
+ Marielle Nwana
 
 ## License 
  Licensed MIT
@@ -32,6 +32,7 @@
 
 
 
-
+## Tests 
+ There are currently no tests for this application.
 
 

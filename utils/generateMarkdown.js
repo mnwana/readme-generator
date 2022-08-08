@@ -10,6 +10,7 @@ function renderLicenseBadge(license, licenseFreeform) {
 }
 
 // function to create table of contents based on data values
+// TODO: update to include all possible values 
 function renderContents(data) {
   var contents = `## Table of Contents`;
   if (data.installation) {
@@ -34,7 +35,7 @@ function renderUsage(data) {
     usage += `## Usage \n ${data.usage}`;
   }
   if (data.screenshotConfirm) {
-    usage += `\n \n ![screen shot of ${data.projectTitle}](${data.screenshotLocation})`;
+    usage += `\n \n ![screen shot of ${data.projectTitle}](/${data.screenshotLocation})`;
   }
   return usage;
 }

@@ -32,17 +32,18 @@ const generateMarkdown = require("./utils/generateMarkdown");
 inquirer.registerPrompt("fuzzypath", require("inquirer-fuzzy-path"));
 
 const mockData = {
-  name: "d",
-  projectTitle: "d",
-  description: "d",
-  installation: "d",
-  usage: "d",
+  name: 'Marielle Nwana',
+  projectTitle: 'README Generator',
+  description: 'A Node application that prompts a user for project information and generates a README file about that project',
+  installation: 'Please install Node.js then download the contents of this repository.',
+  usage: 'Once installed, you can run npm init, then run "node index"  in order to run the program.',
   screenshotConfirm: true,
-  screenshotLocation: "/assets/images/screenshot.png",
-  contributingAuthors: "d",
-  licenseChoice: "MIT",
-  userName: "d",
-  email: "d",
+  screenshotLocation: 'assets/images/screenshot.png',
+  contributingAuthors: 'Marielle Nwana',
+  tests: 'There are currently no tests for this application.',
+  licenseChoice: 'MIT',
+  userName: 'mnwana',
+  email: 'mariellenwana@gmail.com'
 };
 
 // prompt user for input using inquirer
@@ -131,7 +132,7 @@ const promptUser = () => {
       itemType: "file" | "png" | "jpeg" | "jpg",
       //   rootPath: ,
       default: "./",
-      message: "Please enter a path for your screenshot",
+      message: "Please enter a path for your screenshot. You can start typing the name and suggestions will appear.",
       when: ({ screenshotConfirm }) => {
         if (screenshotConfirm) {
           return true;
