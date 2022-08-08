@@ -51,7 +51,7 @@ function renderContents(data) {
     contents += `\n - [License](#license)`;
   }
   if (data.contribute) {
-    contents += `\n - [Contribute](#contribute)`;
+    contents += `\n - [Contributing](#contributing)`;
   }
   if (data.tests) {
     contents += `\n - [Tests](#tests)`;
@@ -122,12 +122,12 @@ function renderLicenseBadge(license) {
 function renderContribute(contribute) {
   var contributeText = ``;
   if (contribute) {
-    contributeText += `## How to Contribute \n ${contribute}`;
+    contributeText += `## Contributing \n ${contribute}`;
   }
   return contributeText;
 }
 
-//  function to generate how to contribute section
+//  function to generate tests section
 function renderTests(tests) {
   var testsText = ``;
   if (tests) {
@@ -136,7 +136,7 @@ function renderTests(tests) {
   return testsText;
 }
 
-//  function to generate how to contribute section
+//  function to generate contact section
 function renderContact(data) {
   var contactText = ``;
   if (data.confirmEmail || data.confirmSite) {

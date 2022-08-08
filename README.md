@@ -7,7 +7,6 @@
 ## Table of Contents
  - [Installation](#installation)
  - [Usage](#usage)
- - [Credits](#credits)
  - [Tests](#tests)
  - [Contact](#contact)
 
@@ -19,8 +18,7 @@
  
  ![screen shot of README Generator](/assets/images/screenshot.png)
 
-## Credits 
- Marielle Nwana
+
 
 
 
@@ -29,7 +27,7 @@
 
 
 ## Tests 
- There are currently no tests for this application.
+ [object Object]
 
 ## Contact
  - Website: mariellenwana.com

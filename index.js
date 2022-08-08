@@ -38,17 +38,31 @@ const mockData = {
   usage: 'Once installed, you can run npm init, then run "node index"  in order to run the program.',
   screenshotConfirm: true,
   screenshotLocation: 'assets/images/screenshot.png',
-  contributingAuthors: 'Marielle Nwana',
-  tests: 'There are currently no tests for this application.',
+  contribyte: 'You cannot contribute :)',
   confirmEmail: true,
   contactEmail: 'mariellenwana@gmail.com',
   confirmSite: true,
   contactSite: 'mariellenwana.com',
-  license: 'MIT'
+  license: 'MIT',
+  contributors: [
+    {
+      name: 'Marielle Nwana',
+      username: 'mnwana',
+      confirmAddCont: true
+    },
+    { name: 'Molly', username: 'mcat123', confirmAddCont: false }
+  ],
+  tests: [
+    {
+      name: 'Test 1',
+      username: 'please test this works!',
+      confirmAddTest: false
+    }
+  ]
 };
 
-// prompt user for input using inquirer
-const promptUser = () => {
+// function to prompt user for input using inquirer
+const promptProject = () => {
   return inquirer.prompt([
     // project title
     {
@@ -129,20 +143,27 @@ const promptUser = () => {
         }
       },
     },
-    // contributing authors
-    // TODO: change to loop that takes name and gh profile for each
+    // // contributing authors
+    // // TODO: change to loop that takes name and gh profile for each
+    // {
+    //   type: "input",
+    //   name: "contributingAuthors",
+    //   message: "Who are the other contributing Authors?",
+    //   default: "",
+    // },
+    // // TODO: change to loop that takes test name and test text for each
+    // // tests
+    // {
+    //   type: "input",
+    //   name: "tests",
+    //   message: "Plese enter how to run a test",
+    //   default: "",
+    // },
+    // contribute
     {
       type: "input",
-      name: "contributingAuthors",
-      message: "Who are the other contributing Authors?",
-      default: "",
-    },
-    // TODO: change to loop that takes test name and test text for each
-    // tests
-    {
-      type: "input",
-      name: "tests",
-      message: "Plese enter how to run a test",
+      name: "contribyte",
+      message: "Plese enter how people can contribute to the project:",
       default: "",
     },
     // questions
@@ -157,7 +178,7 @@ const promptUser = () => {
       name: "contactEmail",
       message: "What is your email address?",
       default: true,
-      when: ({confirmEmail}) =>  confirmEmail == true,
+      when: ({ confirmEmail }) => confirmEmail == true,
     },
     {
       type: "confirm",
@@ -170,7 +191,7 @@ const promptUser = () => {
       name: "contactSite",
       message: "What is your website URL?",
       default: true,
-      when: ({confirmSite}) =>  confirmSite == true,
+      when: ({ confirmSite }) => confirmSite == true,
     },
     // license
     {
@@ -195,6 +216,81 @@ const promptUser = () => {
   ]);
 };
 
+// prompt user for contributors
+const promptContributors = (readmeData) => {
+  if (!readmeData.contributors) {
+    readmeData.contributors = [];
+  }
+  console.log(`
+  =================
+  Add a New Contributor
+  =================
+  `);
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "What is the contributor's name?",
+      },
+      {
+        type: "input",
+        name: "username",
+        message: "What is the contributor's GitHub username?",
+      },
+      {
+        type: "confirm",
+        name: "confirmAddCont",
+        message: "Would you like to add another contributor?",
+      },
+    ])
+    .then((contributorData) => {
+      readmeData.contributors.push(contributorData);
+      if (contributorData.confirmAddCont) {
+        return promptContributors(readmeData);
+      } else {
+        return readmeData;
+      }
+    });
+};
+
+const promptTests = (readmeData) => {
+  if (!readmeData.tests) {
+    readmeData.tests = [];
+  }
+  console.log(`
+  =================
+  Add a New Test
+  =================
+  `);
+  return inquirer
+    .prompt([
+      {
+        type: "input",
+        name: "name",
+        message: "What is the test name?",
+      },
+      {
+        type: "input",
+        name: "username",
+        message: "What are the instructions to run the test?",
+      },
+      {
+        type: "confirm",
+        name: "confirmAddTest",
+        message: "Would you like to add another test?",
+      },
+    ])
+    .then((testData) => {
+      readmeData.tests.push(testData);
+      if (testData.confirmAddTest) {
+        return promptTests(readmeData);
+      } else {
+        return readmeData;
+      }
+    });
+};
+
 //function to write README file with file destination and file content as paameters
 function writeToFile(fileName, fileData) {
   return new Promise((resolve, reject) => {
@@ -211,10 +307,27 @@ function writeToFile(fileName, fileData) {
   });
 }
 
+// //function to initialize app
+// function init() {
+//   // get user input
+//   promptProject()
+//     .then((readmeData) => {
+//       console.log(readmeData);
+//       // get readme text
+//       return generateMarkdown(readmeData);
+//     })
+//     // write readme to file
+//     .then((readmeContent) => {
+//       return writeToFile("./dist/README.md", readmeContent);
+//     });
+// }
+
 //function to initialize app
 function init() {
   // get user input
-  promptUser()
+  promptProject()
+    .then(promptContributors)
+    .then(promptTests)
     .then((readmeData) => {
       console.log(readmeData);
       // get readme text
@@ -222,7 +335,7 @@ function init() {
     })
     // write readme to file
     .then((readmeContent) => {
-      return writeToFile("./dist/README.md", readmeContent);
+      return writeToFile("/README.md", readmeContent);
     });
 }
 
