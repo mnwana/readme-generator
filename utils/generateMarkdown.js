@@ -1,14 +1,18 @@
-// TODO: Create a function that returns a license badge based on which license is passed in
-// If there is no license, return an empty string
-function renderLicenseBadge(license) {}
+// function that returns a license badge based on which license is passed in and ifthere is no license, returns an empty string
+function renderLicenseBadge(license) {
+  if (!license) {
+    return "";
+  }
+  return `https://img.shields.io/badge/license-${license}-blue`;
+}
 
 // TODO: Create a function to generate markdown for README
 function generateMarkdown(data) {
-//   return `# ${data.title}
+  //   return `# ${data.title}
 
-// `;
+  // `;
 
-return `
+  return `
 # Title
 
 ## Description
@@ -47,11 +51,10 @@ If you followed tutorials, include links to those here as well.
 
 ## License
 
-The last section of a high-quality README file is the license. This lets other developers know what they can and cannot do with your project. If you need help choosing a license, refer to [https://choosealicense.com/](https://choosealicense.com/).
+${renderLicenseBadge}
 
 ---
 
-🏆 The previous sections are the bare minimum, and your project will ultimately determine the content of this document. You might also want to consider adding the following sections.
 
 ## Badges
 
