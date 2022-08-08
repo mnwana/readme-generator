@@ -37,13 +37,22 @@ function renderUsage(data){
 };
 
 
-//  function to generate usage section including description and optional screen shot
+//  function to generate installation section
 function renderInstallation(installation){
-    var installation = `## Installation`;
+    var installationText= `## Installation`;
     if(installation){
-        installation += `\n ${installation}`;
+        installationText += `\n ${installation}`;
     }
-    return installation;
+    return installationText;
+};
+
+//  function to generate installation section
+function renderDescription(description){
+    var descriptionText= `## Description`;
+    if(description){
+        descriptionText += `\n ${description}`;
+    }
+    return descriptionText;
 };
 
 // function to generate markdown for README
@@ -51,9 +60,7 @@ function generateMarkdown(data) {
   return `
 # ${data.projectTitle}
 
-## Description
-
-${data.description}
+${renderDescription(data.description)}
 
 ${renderContents(data)}
 
