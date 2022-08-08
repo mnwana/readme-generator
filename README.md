@@ -1,39 +1,39 @@
+
 # README Generator
 
-## Description
-
-A Node application that prompts a user for project information and generates a README file about that project
+## Description 
+ A Node application that prompts a user for project information and generates a README file about that project
 
 ## Table of Contents
+ - [Installation](#installation)
+ - [Usage](#usage)
+ - [Credits](#credits)
+ - [License](#license)
+ - [Tests](#tests)
 
-- [Installation](#installation)
-- [Usage](#usage)
-- [License](#license)
+## Installation 
+ Please install Node.js then download the contents of this repository.
 
-## Installation
+## Usage 
+ Once installed, you can run npm init, then run "node index"  in order to run the program.
+ 
+ ![screen shot of README Generator](/assets/images/screenshot.png)
 
-Please install Node.js then download the contents of this repository.
+## Credits 
+ Marielle Nwana
 
-## Usage
-
-Once installed, you can run npm init, then run "node index" in order to run the program.
-
-![screen shot of README Generator](/assets/images/screenshot.png)
-
-## Credits
-
-Marielle Nwana
-
-## License
-
-Licensed MIT
+## License 
+ MIT
 
 ---
 
-## Badges
 
-![MIT license badge](https://img.shields.io/badge/license-MIT-blue)
 
-## Tests
+## Tests 
+ There are currently no tests for this application.
 
-There are currently no tests for this application.
+
+
+
+  ## Badges
+  ![MIT license badge](https://img.shields.io/badge/license-mit-blue)
