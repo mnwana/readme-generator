@@ -8,7 +8,6 @@
  - [Installation](#installation)
  - [Usage](#usage)
  - [Credits](#credits)
- - [License](#license)
  - [Tests](#tests)
 
 ## Installation 
@@ -22,8 +21,7 @@
 ## Credits 
  Marielle Nwana
 
-## License 
- MIT
+
 
 ---
 
@@ -34,6 +32,5 @@
 
 
 
-
-  ## Badges
-  ![MIT license badge](https://img.shields.io/badge/license-mit-blue)
+ 
+ ![MIT license badge](https://img.shields.io/badge/license-mit-blue)

@@ -115,9 +115,7 @@ function renderLicenseBadge(license) {
   if (!license) {
     return "";
   }
-  return `
-  ## Badges
-  ![${license} license badge](https://img.shields.io/badge/license-${licenses[license]}-blue)`;
+  return ` \n ![${license} license badge](https://img.shields.io/badge/license-${licenses[license]}-blue)`;
 }
 
 //  function to generate how to contribute section
@@ -149,9 +147,6 @@ function renderContact(data) {
     if (data.contactEmail) {
       contactText += ` - Email: ${data.contactEmail}`;
     }
-    if (data.contactPhone) {
-      contactText += ` - Phone: ${data.contactPhone}`;
-    }
   }
   return contactText;
 }
@@ -181,7 +176,7 @@ ${renderTests(data.tests)}
 
 ${renderContact(data)}
 
-${renderLicenseBadge(data.licenseChoice, data.licenseFreeform)}
+${renderLicenseBadge(data.license)}
 `;
 }
 

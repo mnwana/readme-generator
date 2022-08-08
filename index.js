@@ -27,45 +27,29 @@ THEN I am taken to the corresponding section of the README
 
 const fs = require("fs");
 const inquirer = require("inquirer");
-const {generateMarkdown,licenses} = require("./utils/generateMarkdown.js");
+const { generateMarkdown, licenses } = require("./utils/generateMarkdown.js");
 
 inquirer.registerPrompt("fuzzypath", require("inquirer-fuzzy-path"));
 
 const mockData = {
-  name: "Marielle Nwana",
-  projectTitle: "README Generator",
-  description:
-    "A Node application that prompts a user for project information and generates a README file about that project",
-  installation:
-    "Please install Node.js then download the contents of this repository.",
-  usage:
-    'Once installed, you can run npm init, then run "node index"  in order to run the program.',
+  projectTitle: 'README Generator',
+  description: 'A Node application that prompts a user for project information and generates a README file about that project',
+  installation: 'Please install Node.js then download the contents of this repository.',
+  usage: 'Once installed, you can run npm init, then run "node index"  in order to run the program.',
   screenshotConfirm: true,
-  screenshotLocation: "assets/images/screenshot.png",
-  contributingAuthors: "Marielle Nwana",
-  tests: "There are currently no tests for this application.",
-  licenseChoice: "MIT",
-  userName: "mnwana",
-  email: "mariellenwana@gmail.com",
+  screenshotLocation: 'assets/images/screenshot.png',
+  contributingAuthors: 'Marielle Nwana',
+  tests: 'There are currently no tests for this application.',
+  confirmEmail: true,
+  contactEmail: 'mariellenwana@gmail.com',
+  confirmSite: true,
+  contactSite: 'mariellenwana.com',
+  license: 'MIT'
 };
 
 // prompt user for input using inquirer
 const promptUser = () => {
   return inquirer.prompt([
-    // author name
-    {
-      type: "input",
-      name: "name",
-      message: "What is your name?",
-      validate: (nameInput) => {
-        if (nameInput) {
-          return true;
-        } else {
-          console.log("Please enter your name");
-          return false;
-        }
-      },
-    },
     // project title
     {
       type: "input",
@@ -146,13 +130,14 @@ const promptUser = () => {
       },
     },
     // contributing authors
-    // TODO: change to loop
+    // TODO: change to loop that takes name and gh profile for each
     {
       type: "input",
       name: "contributingAuthors",
       message: "Who are the other contributing Authors?",
       default: "",
     },
+    // TODO: change to loop that takes test name and test text for each
     // tests
     {
       type: "input",
@@ -161,13 +146,39 @@ const promptUser = () => {
       default: "",
     },
     // questions
+    {
+      type: "confirm",
+      name: "confirmEmail",
+      message: "Would you like to include an email for contact?",
+      default: true,
+    },
+    {
+      type: "input",
+      name: "contactEmail",
+      message: "What is your email address?",
+      default: true,
+      when: ({confirmEmail}) =>  confirmEmail == true,
+    },
+    {
+      type: "confirm",
+      name: "confirmSite",
+      message: "Would you like to include a website for contact?",
+      default: true,
+    },
+    {
+      type: "input",
+      name: "contactSite",
+      message: "What is your website URL?",
+      default: true,
+      when: ({confirmSite}) =>  confirmSite == true,
+    },
     // license
     {
       type: "list",
       name: "license",
       message: "Please choose a license",
       choices: Object.keys(licenses),
-      default: "MIT",
+      default: "Other",
     },
     {
       type: "input",
@@ -181,18 +192,6 @@ const promptUser = () => {
         }
       },
     },
-    // github name
-    {
-      type: "input",
-      name: "userName",
-      message: "Plese enter your GitHub username",
-    },
-    // email address
-    {
-      type: "input",
-      name: "email",
-      message: "Plese enter your email address for questions",
-    },
   ]);
 };
 
@@ -201,7 +200,7 @@ function writeToFile(fileName, fileData) {
   return new Promise((resolve, reject) => {
     fs.writeFile(fileName, fileData, (err) => {
       if (err) {
-        reject(error);
+        reject(err);
         return;
       }
       resolve({
@@ -233,5 +232,5 @@ function mockInit() {
 }
 
 // Function call to initialize app
-init();
-// mockInit();
+// init();
+mockInit();
