@@ -29,21 +29,14 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
 
-
-
+// prompt user for input using inquirer
 const promptUser = () => {
   return inquirer.prompt([
+    // name
     {
       type: "input",
       name: "name",
       message: "What is your name?",
-      // when: ({ confirmAbout }) => {
-      //     if (confirmAbout) {
-      //       return true;
-      //     } else {
-      //       return false;
-      //     }
-      //   },
       validate: (nameInput) => {
         if (nameInput) {
           return true;
@@ -53,34 +46,141 @@ const promptUser = () => {
         }
       },
     },
+    // project title
+    {
+      type: "input",
+      name: "projectTitle",
+      message: "What is the name of your project?",
+      validate: (titleInput) => {
+        if (titleInput) {
+          return true;
+        } else {
+          console.log("Please enter a project title");
+          return false;
+        }
+      },
+    },
+    // description
+    {
+      type: "input",
+      name: "description",
+      message: "Please enter a project description?",
+      validate: (descriptionInput) => {
+        if (descriptionInput) {
+          return true;
+        } else {
+          console.log("Please enter a project description");
+          return false;
+        }
+      },
+    },
+    // table of contents
+
+    // installation
+    {
+      type: "input",
+      name: "installatiom",
+      message: "Please enter a installation instructions",
+      validate: (instructionInput) => {
+        if (instructionInput) {
+          return true;
+        } else {
+          console.log("Please enter a installation instructions");
+          return false;
+        }
+      },
+    },
+    // usage
+    {
+      type: "input",
+      name: "usage",
+      message: "Please enter a usage instructions",
+      validate: (usageInput) => {
+        if (usagenInput) {
+          return true;
+        } else {
+          console.log("Please enter a usage instructions");
+          return false;
+        }
+      },
+    },
+    // screen shot location
+    {
+      type: "confirm",
+      name: "screenshotConfirm",
+      message: "Would you like to include a screenshot",
+      default: false,
+    },
+    {
+      type: "input",
+      name: "screenshotLocation",
+      message: "Please enter a path for your screenshot",
+      when: ({ screenshotConfirm }) => {
+        if (screenshotConfirm) {
+          return true;
+        } else {
+          return false;
+        }
+      },
+      validate: (locationInput) => {
+        if (locationInput) {
+          return true;
+        } else {
+          console.log("Please enter a path for your screenshot");
+          return false;
+        }
+      },
+    },
+    // contributing authors
+    {
+      type: "input",
+      name: "contributingAuthors",
+      message: "Who are the other contributing Authors?",
+      default: "",
+    },
+    // tests
+    {
+      type: "input",
+      name: "name",
+      message: "Plese enter how to run a test",
+      default: "",
+    },
+    // questions
+    // license
+    {
+      type: "checkbox",
+      name: "licenseChoice",
+      message: "Plese choose a license name",
+      choices: ["MIT", "Other"],
+    },
+    {
+      type: "input",
+      name: "licenseFreeform",
+      message: "Plese enter a license name",
+      when: licenseChoice == "Other",
+
+      // when: ({ licenseChoice }) => {
+      //     if (licenseChoice =='Other') {
+      //       return true;
+      //     } else {
+      //       return false;
+      //     }
+      //   },
+    },
+    // github name
+    {
+      type: "input",
+      name: "userName",
+      message: "Plese enter your GitHub username",
+    },
+    // email address
+    {
+      type: "input",
+      name: "email",
+      message: "Plese enter your email address for questions",
+    },
   ]);
 };
-
-// prompt user for input using inquirer
-
-// project title
-
-// description
-
-// table of contents
-
-// installation
-
-// usage
-
-// screen shot location
-
-// contributing authors
-
-// tests
-
-// questions
-
-// license
-
-// github name
-
-// email address
 
 //function to write README file with file destination and file content as paameters
 function writeToFile(fileName, fileData) {
