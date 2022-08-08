@@ -94,23 +94,20 @@ function renderUsage(data) {
 
 //  function to generate credits section
 function renderContributors(contributors) {
-  var creditsText = ``;
+  var contributorsText = ``;
   if (contributors.length > 0) {
-    creditsText += `## Credits \n ${credits}`;
-    contributors.forEach(contributor => {
-      creditsText += `\n -[${contributor.name}](https://${contributor.username}.github.com)`
-    })
+    contributorsText =   `## Credits`;
+    contributors.forEach(contributor => contributorsText += ` \n - [${contributor.name}](https://${contributor.username}.github.com) \n`);
   }
-  return creditsText;
+  return contributorsText;
 }
 
 //  function to generate installation section
 function renderLicense(license, licenseFreeform) {
   var licenseText = ``;
-  if (license!= "Other") {
+  if (license != "Other") {
     licenseText += `## License \n ${license}`;
-  }
-  else {
+  } else {
     licenseText += `## License \n ${licenseFreeform}`;
   }
   return licenseText;
@@ -136,8 +133,9 @@ function renderContribute(contribute) {
 //  function to generate tests section
 function renderTests(tests) {
   var testsText = ``;
-  if (tests) {
-    testsText += `## Tests \n ${tests}`;
+  if (tests.length > 0) {
+    testsText =  `## Tests`;
+    tests.forEach(test => testsText+= `\n ### ${test.name} \n ${test.text} \n ` );
   }
   return testsText;
 }

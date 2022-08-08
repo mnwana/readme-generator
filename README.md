@@ -7,6 +7,7 @@
 ## Table of Contents
  - [Installation](#installation)
  - [Usage](#usage)
+ - [Credits](#credits)
  - [Tests](#tests)
  - [Contact](#contact)
 
@@ -18,16 +19,23 @@
  
  ![screen shot of README Generator](/assets/images/screenshot.png)
 
+## Credits 
+ - [Marielle Nwana](https://mnwana.github.com) 
+ 
+ - [Molly](https://mcat123.github.com) 
 
 
-
+## License 
+ undefined
 
 ---
 
 
 
-## Tests 
- [object Object]
+## Tests
+ ### Test 1 
+ please test this works! 
+ 
 
 ## Contact
  - Website: mariellenwana.com

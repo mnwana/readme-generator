@@ -55,7 +55,7 @@ const mockData = {
   tests: [
     {
       name: 'Test 1',
-      username: 'please test this works!',
+      text: 'please test this works!',
       confirmAddTest: false
     }
   ]
@@ -272,7 +272,7 @@ const promptTests = (readmeData) => {
       },
       {
         type: "input",
-        name: "username",
+        name: "text",
         message: "What are the instructions to run the test?",
       },
       {
