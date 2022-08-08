@@ -44,7 +44,7 @@ function renderContents(data) {
   if (data.usage) {
     contents += `\n - [Usage](#usage)`;
   }
-  if (data.contributingAuthors) {
+  if (data.contributors) {
     contents += `\n - [Credits](#credits)`;
   }
   if (data.licenseChoice) {
@@ -93,26 +93,32 @@ function renderUsage(data) {
 }
 
 //  function to generate credits section
-function renderCredits(credits) {
+function renderContributors(contributors) {
   var creditsText = ``;
-  if (credits) {
+  if (contributors.length > 0) {
     creditsText += `## Credits \n ${credits}`;
+    contributors.forEach(contributor => {
+      creditsText += `[${contributor.name}](https://${contributor.username}.github.com)`
+    })
   }
   return creditsText;
 }
 
 //  function to generate installation section
-function renderLicense(license) {
+function renderLicense(license, licenseFreeform) {
   var licenseText = ``;
-  if (license) {
+  if (license!= "Other") {
     licenseText += `## License \n ${license}`;
+  }
+  else {
+    licenseText += `## License \n ${licenseFreeform}`;
   }
   return licenseText;
 }
 
 // function to return a license badge based on which license is passed in and ifthere is no license, returns an empty string
 function renderLicenseBadge(license) {
-  if (!license) {
+  if (!license && license != "Other") {
     return "";
   }
   return ` \n ![${license} license badge](https://img.shields.io/badge/license-${licenses[license]}-blue)`;
@@ -165,7 +171,7 @@ ${renderInstallation(data.installation)}
 
 ${renderUsage(data)}
 
-${renderCredits(data.contributingAuthors)}
+${renderContributors(data.contributors)}
 
 ${renderLicense(data.licenseChoice, data.licenseFreeform)}
 
