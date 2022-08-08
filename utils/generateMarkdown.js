@@ -3,7 +3,10 @@ function renderLicenseBadge(license, licenseFreeform) {
   if (!license) {
     return "";
   }
-  return `![${license} license badge](https://img.shields.io/badge/license-${license}-blue)`;
+  return `
+  ## Badges
+
+  ![${license} license badge](https://img.shields.io/badge/license-${license}-blue)`;
 }
 
 // function to create table of contents based on data values
@@ -56,12 +59,30 @@ function renderDescription(description) {
 
 //  function to generate credits section
 function renderCredits(credits) {
-    var creditsText = `## Credits`;
-    if (credits) {
-      creditsText += `\n ${credits}`;
-    }
-    return creditsText;
+  var creditsText = `## Credits`;
+  if (credits) {
+    creditsText += `\n ${credits}`;
   }
+  return creditsText;
+}
+
+//  function to generate how to contribute section
+function renderContribute(contribute) {
+  var contributeText = `## How to Contribute`;
+  if (contribute) {
+    contributeText += `\n ${contribute}`;
+  }
+  return contributeText;
+}
+
+//  function to generate how to contribute section
+function renderTests(tests) {
+  var testsText = `## Tests`;
+  if (tests) {
+    testsText += `\n ${tests}`;
+  }
+  return testsText;
+}
 
 // function to generate markdown for README
 function generateMarkdown(data) {
@@ -76,21 +97,15 @@ ${renderInstallation(data.installation)}
 
 ${renderUsage(data)}
 
-${ renderCredits(data.contributingAuthors)}
+${renderCredits(data.contributingAuthors)}
 
 ---
 
-## Badges
-
 ${renderLicenseBadge(data.licenseChoice, data.licenseFreeform)}
 
+${renderContribute(data.contribute)}
 
-## How to Contribute
-
-
-## Tests
-
-${data.tests}
+${renderTests(data.tests)}
 `;
 }
 
