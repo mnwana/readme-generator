@@ -29,10 +29,23 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
 
+const mockData = {
+  name: "d",
+  projectTitle: "d",
+  description: "d",
+  installatiom: "d",
+  usage: "d",
+  screenshotConfirm: false,
+  contributingAuthors: "d",
+  licenseChoice: ["MIT"],
+  userName: "d",
+  email: "d",
+};
+
 // prompt user for input using inquirer
 const promptUser = () => {
   return inquirer.prompt([
-    // name
+    // author name
     {
       type: "input",
       name: "name",
@@ -74,8 +87,6 @@ const promptUser = () => {
         }
       },
     },
-    // table of contents
-
     // installation
     {
       type: "input",
@@ -96,7 +107,7 @@ const promptUser = () => {
       name: "usage",
       message: "Please enter a usage instructions",
       validate: (usageInput) => {
-        if (usagenInput) {
+        if (usageInput) {
           return true;
         } else {
           console.log("Please enter a usage instructions");
@@ -157,15 +168,13 @@ const promptUser = () => {
       type: "input",
       name: "licenseFreeform",
       message: "Plese enter a license name",
-      when: licenseChoice == "Other",
-
-      // when: ({ licenseChoice }) => {
-      //     if (licenseChoice =='Other') {
-      //       return true;
-      //     } else {
-      //       return false;
-      //     }
-      //   },
+      when: ({ licenseChoice }) => {
+        if (licenseChoice == "Other") {
+          return true;
+        } else {
+          return false;
+        }
+      },
     },
     // github name
     {
@@ -203,6 +212,7 @@ function init() {
   // get user input
   promptUser()
     .then((readmeData) => {
+      console.log(readmeData);
       // get readme text
       return generateMarkdown(readmeData);
     })
@@ -213,4 +223,11 @@ function init() {
 }
 
 // Function call to initialize app
-init();
+// init();
+
+function mockInit() {
+  console.log(mockData);
+    return writeToFile("./dist/README.md", generateMarkdown(mockData));
+}
+
+mockInit();
