@@ -1,9 +1,9 @@
 // function that returns a license badge based on which license is passed in and ifthere is no license, returns an empty string
-function renderLicenseBadge(license) {
+function renderLicenseBadge(license,licenseFreeform) {
   if (!license) {
     return "";
   }
-  return `https://img.shields.io/badge/license-${license}-blue`;
+  return `![${license} license badge](https://img.shields.io/badge/license-${license}-blue)`;
 }
 
 // TODO: Create a function to generate markdown for README
@@ -38,7 +38,7 @@ ${data.contributingAuthors}
 
 ## Badges
 
-${renderLicenseBadge}
+${renderLicenseBadge(data.licenseChoice,data.licenseFreeform)}
 
 
 ## How to Contribute
