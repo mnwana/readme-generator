@@ -29,15 +29,18 @@ const fs = require("fs");
 const inquirer = require("inquirer");
 const generateMarkdown = require("./utils/generateMarkdown");
 
+inquirer.registerPrompt("fuzzypath", require("inquirer-fuzzy-path"));
+
 const mockData = {
   name: "d",
   projectTitle: "d",
   description: "d",
   installatiom: "d",
   usage: "d",
-  screenshotConfirm: false,
+  screenshotConfirm: true,
+  screenshotLocation: "./assets/images/screenshot.png",
   contributingAuthors: "d",
-  licenseChoice: ["MIT"],
+  licenseChoice: "MIT",
   userName: "d",
   email: "d",
 };
@@ -123,21 +126,16 @@ const promptUser = () => {
       default: false,
     },
     {
-      type: "input",
+      type: "fuzzypath",
       name: "screenshotLocation",
+      itemType: "file" | "png" | "jpeg" | "jpg",
+      //   rootPath: ,
+      default: "./",
       message: "Please enter a path for your screenshot",
       when: ({ screenshotConfirm }) => {
         if (screenshotConfirm) {
           return true;
         } else {
-          return false;
-        }
-      },
-      validate: (locationInput) => {
-        if (locationInput) {
-          return true;
-        } else {
-          console.log("Please enter a path for your screenshot");
           return false;
         }
       },
@@ -159,10 +157,11 @@ const promptUser = () => {
     // questions
     // license
     {
-      type: "checkbox",
+      type: "list",
       name: "licenseChoice",
       message: "Plese choose a license name",
       choices: ["MIT", "Other"],
+      default: "MIT",
     },
     {
       type: "input",
@@ -227,7 +226,7 @@ function init() {
 
 function mockInit() {
   console.log(mockData);
-    return writeToFile("./dist/README.md", generateMarkdown(mockData));
+  return writeToFile("./dist/README.md", generateMarkdown(mockData));
 }
 
 mockInit();

@@ -17,6 +17,7 @@
   },
   "homepage": "https://github.com/mnwana/readme-generator#readme",
   "dependencies": {
-    "inquirer": "^8.2.4"
+    "inquirer": "^8.2.4",
+    "inquirer-fuzzy-path": "^2.3.0"
   }
 }
