@@ -25,12 +25,36 @@ WHEN I click on the links in the Table of Contents
 THEN I am taken to the corresponding section of the README
 */
 
-
-const fs = require('fs');
-const inquirer = require('requirer');
+const fs = require("fs");
+const inquirer = require("requirer");
+const generateMarkdown = require("./utils/generateMarkdown");
 
 // TODO: Create an array of questions for user input
-const questions = [];
+
+const promptUser = () => {
+  return inquirer.prompt([
+    {
+      type: "input",
+      name: "name",
+      message: "What is your name?",
+      // when: ({ confirmAbout }) => {
+      //     if (confirmAbout) {
+      //       return true;
+      //     } else {
+      //       return false;
+      //     }
+      //   },
+      validate: (nameInput) => {
+        if (nameInput) {
+          return true;
+        } else {
+          console.log("Please enter your name");
+          return false;
+        }
+      },
+    },
+  ]);
+};
 
 // prompt user for input using inquirer
 
@@ -58,13 +82,32 @@ const questions = [];
 
 // email address
 
-
-
 // TODO: Create a function to write README file
-function writeToFile(fileName, data) {}
+function writeToFile(fileName, data) {
+  return new Promise((resolve, reject) => {
+    fs.writeFile(fileName, data, (err) => {
+      if (err) {
+        reject(error);
+        return;
+      }
+      resolve({
+        ok: true,
+        message: "File saved!",
+      });
+    });
+  });
+}
 
 // TODO: Create a function to initialize app
-function init() {}
+function init() {
+  promptUser
+    .then((readmeData) => {
+      return generateMarkdown(readmeData);
+    })
+    .then((readmeContent) => {
+      return writeFile(readmeContent);
+    });
+}
 
 // Function call to initialize app
 init();
