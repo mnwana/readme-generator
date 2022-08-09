@@ -1,65 +1,10 @@
-/*
-GIVEN a command-line application that accepts user input
-
-WHEN I am prompted for information about my application repository
-THEN a high-quality, professional README.md is generated with the title of my project and sections entitled Description, 
-Table of Contents, Installation, Usage, License, Contributing, Tests, and Questions
-
-WHEN I enter my project title
-THEN this is displayed as the title of the README
-
-WHEN I enter a description, installation instructions, usage information, contribution guidelines, and test instructions
-THEN this information is added to the sections of the README entitled Description, Installation, Usage, Contributing, and Tests
-
-WHEN I choose a license for my application from a list of options
-THEN a badge for that license is added near the top of the README and a notice is added to the section 
-of the README entitled License that explains which license the application is covered under
-
-WHEN I enter my GitHub username
-THEN this is added to the section of the README entitled Questions, with a link to my GitHub profile
-
-WHEN I enter my email address
-THEN this is added to the section of the README entitled Questions, with instructions on how to reach me with additional questions
-
-WHEN I click on the links in the Table of Contents
-THEN I am taken to the corresponding section of the README
-*/
-
+// import modules & licenses object
 const fs = require("fs");
 const inquirer = require("inquirer");
 const { generateMarkdown, licenses } = require("./utils/generateMarkdown.js");
 
+// add file storage prompt for inquirer
 inquirer.registerPrompt("fuzzypath", require("inquirer-fuzzy-path"));
-
-const mockData = {
-  projectTitle: 'README Generator',
-  description: 'A Node application that prompts a user for project information and generates a README file about that project',
-  installation: 'Please install Node.js then download the contents of this repository.',
-  usage: 'Once installed, you can run npm init, then run "node index"  in order to run the program.',
-  screenshotConfirm: true,
-  screenshotLocation: 'assets/images/screenshot.png',
-  contribyte: 'You cannot contribute :)',
-  confirmEmail: true,
-  contactEmail: 'mariellenwana@gmail.com',
-  confirmSite: true,
-  contactSite: 'mariellenwana.com',
-  license: 'MIT',
-  contributors: [
-    {
-      name: 'Marielle Nwana',
-      username: 'mnwana',
-      confirmAddCont: true
-    },
-    { name: 'Molly', username: 'mcat123', confirmAddCont: false }
-  ],
-  tests: [
-    {
-      name: 'Test 1',
-      text: 'please test this works!',
-      confirmAddTest: false
-    }
-  ]
-};
 
 // function to prompt user for input using inquirer
 const promptProject = () => {
@@ -180,19 +125,19 @@ const promptProject = () => {
       default: true,
       when: ({ confirmEmail }) => confirmEmail == true,
     },
-    {
-      type: "confirm",
-      name: "confirmSite",
-      message: "Would you like to include a website for contact?",
-      default: true,
-    },
-    {
-      type: "input",
-      name: "contactSite",
-      message: "What is your website URL?",
-      default: true,
-      when: ({ confirmSite }) => confirmSite == true,
-    },
+    // {
+    //   type: "confirm",
+    //   name: "confirmSite",
+    //   message: "Would you like to include a website for contact?",
+    //   default: true,
+    // },
+    // {
+    //   type: "input",
+    //   name: "contactSite",
+    //   message: "What is your website URL?",
+    //   default: true,
+    //   when: ({ confirmSite }) => confirmSite == true,
+    // },
     // license
     {
       type: "list",
@@ -216,8 +161,9 @@ const promptProject = () => {
   ]);
 };
 
-// prompt user for contributors
+// function to prompt user for contributor information
 const promptContributors = (readmeData) => {
+  // create contributors array if not already in readmeData
   if (!readmeData.contributors) {
     readmeData.contributors = [];
   }
@@ -226,35 +172,43 @@ const promptContributors = (readmeData) => {
   Add a New Contributor
   =================
   `);
-  return inquirer
-    .prompt([
-      {
-        type: "input",
-        name: "name",
-        message: "What is the contributor's name?",
-      },
-      {
-        type: "input",
-        name: "username",
-        message: "What is the contributor's GitHub username?",
-      },
-      {
-        type: "confirm",
-        name: "confirmAddCont",
-        message: "Would you like to add another contributor?",
-      },
-    ])
-    .then((contributorData) => {
-      readmeData.contributors.push(contributorData);
-      if (contributorData.confirmAddCont) {
-        return promptContributors(readmeData);
-      } else {
-        return readmeData;
-      }
-    });
+  // get contributor names and github user names and return object
+  return (
+    inquirer
+      .prompt([
+        {
+          type: "input",
+          name: "name",
+          message: "What is the contributor's name?",
+        },
+        {
+          type: "input",
+          name: "username",
+          message: "What is the contributor's GitHub username?",
+        },
+        // confirm if they want to add additional users
+        {
+          type: "confirm",
+          name: "confirmAddCont",
+          message: "Would you like to add another contributor?",
+        },
+      ])
+      // push contributor object to array
+      .then((contributorData) => {
+        readmeData.contributors.push(contributorData);
+        // if they want to add additional users, call promptContributors for another contributor
+        if (contributorData.confirmAddCont) {
+          return promptContributors(readmeData);
+        } else {
+          return readmeData;
+        }
+      })
+  );
 };
 
+//  function to prompt user for test information
 const promptTests = (readmeData) => {
+  // create tests array if not already in readmeData
   if (!readmeData.tests) {
     readmeData.tests = [];
   }
@@ -263,6 +217,7 @@ const promptTests = (readmeData) => {
   Add a New Test
   =================
   `);
+  // get test names and description and return object
   return inquirer
     .prompt([
       {
@@ -275,6 +230,8 @@ const promptTests = (readmeData) => {
         name: "text",
         message: "What are the instructions to run the test?",
       },
+      // confirm if they want to add additional tests
+
       {
         type: "confirm",
         name: "confirmAddTest",
@@ -282,7 +239,9 @@ const promptTests = (readmeData) => {
       },
     ])
     .then((testData) => {
+      // push tests object to array
       readmeData.tests.push(testData);
+      // if they want to add additional tests, call promptTests for another test
       if (testData.confirmAddTest) {
         return promptTests(readmeData);
       } else {
@@ -307,30 +266,17 @@ function writeToFile(fileName, fileData) {
   });
 }
 
-// //function to initialize app
-// function init() {
-//   // get user input
-//   promptProject()
-//     .then((readmeData) => {
-//       console.log(readmeData);
-//       // get readme text
-//       return generateMarkdown(readmeData);
-//     })
-//     // write readme to file
-//     .then((readmeContent) => {
-//       return writeToFile("./dist/README.md", readmeContent);
-//     });
-// }
-
 //function to initialize app
 function init() {
-  // get user input
+  // get user input for project
   promptProject()
+    // get user input for contributors
     .then(promptContributors)
+    // get user input for tests
     .then(promptTests)
     .then((readmeData) => {
       console.log(readmeData);
-      // get readme text
+      // get readme template from inputs
       return generateMarkdown(readmeData);
     })
     // write readme to file
@@ -339,11 +285,10 @@ function init() {
     });
 }
 
-function mockInit() {
-  console.log(mockData);
-  return writeToFile("README.md", generateMarkdown(mockData));
-}
+// function mockInit() {
+//   console.log(mockData);
+//   return writeToFile("README.md", generateMarkdown(mockData));
+// }
 
 // Function call to initialize app
-// init();
-mockInit();
+init();

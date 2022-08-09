@@ -57,7 +57,7 @@ function renderContents(data) {
     contents += `\n - [Tests](#tests)`;
   }
   if (data.confirmEmail || data.confirmSite) {
-    contents += `\n - [Contact](#contact)`;
+    contents += `\n - [Questions](#questions)`;
   }
   return contents;
 }
@@ -92,12 +92,19 @@ function renderUsage(data) {
   return usage;
 }
 
-//  function to generate credits section
-function renderContributors(contributors) {
-  var contributorsText = ``;
-  if (contributors.length > 0) {
-    contributorsText =   `## Credits`;
-    contributors.forEach(contributor => contributorsText += ` \n - [${contributor.name}](https://${contributor.username}.github.com) \n`);
+//  function to generate questions section
+function renderContributors(data) {
+  var contributorsText = `## Questions`;
+  if (data.contributors.length > 0) {
+    data.contributors.forEach(contributor => contributorsText += ` \n - [${contributor.name}](https://github.com/${contributor.username}) \n`);
+  }
+  if (data.confirmEmail || data.confirmSite) {
+    if (data.contactSite) {
+      contributorsText += `\n - Website: [${data.contactSite}](${data.contactSite})`;
+    }
+    if (data.contactEmail) {
+      contributorsText += `\n - Email me at [${data.contactEmail}](mailto:${data.contactEmail}) with any questions`;
+    }
   }
   return contributorsText;
 }
@@ -144,11 +151,11 @@ function renderTests(tests) {
 function renderContact(data) {
   var contactText = ``;
   if (data.confirmEmail || data.confirmSite) {
-    contactText += `## Contact`;
+    contactText += `## Questions`;
     // TODO: make hyperlinks
-    if (data.contactSite) {
-      contactText += `\n - Website: ${data.contactSite}`;
-    }
+    // if (data.contactSite) {
+    //   contactText += `\n - Website: ${data.contactSite}`;
+    // }
     if (data.contactEmail) {
       contactText += `\n - Email: ${data.contactEmail}`;
     }
@@ -163,25 +170,23 @@ function generateMarkdown(data) {
 
 ${renderDescription(data.description)}
 
+${renderLicenseBadge(data.license)}
+
 ${renderContents(data)}
 
 ${renderInstallation(data.installation)}
 
 ${renderUsage(data)}
 
-${renderContributors(data.contributors)}
+${renderContributors(data)}
 
-${renderLicense(data.licenseChoice, data.licenseFreeform)}
+${renderLicense(data.license, data.licenseFreeform)}
 
----
 
 ${renderContribute(data.contribute)}
 
 ${renderTests(data.tests)}
 
-${renderContact(data)}
-
-${renderLicenseBadge(data.license)}
 `;
 }
 

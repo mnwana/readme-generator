@@ -4,12 +4,15 @@
 ## Description 
  A Node application that prompts a user for project information and generates a README file about that project
 
+ 
+ ![MIT license badge](https://img.shields.io/badge/license-mit-blue)
+
 ## Table of Contents
  - [Installation](#installation)
  - [Usage](#usage)
  - [Credits](#credits)
  - [Tests](#tests)
- - [Contact](#contact)
+ - [Questions](#questions)
 
 ## Installation 
  Please install Node.js then download the contents of this repository.
@@ -19,14 +22,16 @@
  
  ![screen shot of README Generator](/assets/images/screenshot.png)
 
-## Credits 
- - [Marielle Nwana](https://mnwana.github.com) 
+## Questions 
+ - [Marielle Nwana](https://github.com/mnwana) 
  
- - [Molly](https://mcat123.github.com) 
+ - [Molly](https://github.com/mcat123) 
 
+ - Website: [mariellenwana.com](mariellenwana.com)
+ - Email me at [mariellenwana@gmail.com](mailto:mariellenwana@gmail.com) with any questions
 
 ## License 
- undefined
+ MIT
 
 ---
 
@@ -37,9 +42,3 @@
  please test this works! 
  
 
-## Contact
- - Website: mariellenwana.com
- - Email: mariellenwana@gmail.com
-
- 
- ![MIT license badge](https://img.shields.io/badge/license-mit-blue)
