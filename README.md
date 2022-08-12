@@ -1,44 +1,38 @@
 
 # README Generator
 
-## Description 
- A Node application that prompts a user for project information and generates a README file about that project
-
  
  ![MIT license badge](https://img.shields.io/badge/license-mit-blue)
+
+## Description 
+ a command-line application that dynamically generates a professional README.md file from a user's input using the Inquirer package
 
 ## Table of Contents
  - [Installation](#installation)
  - [Usage](#usage)
- - [Credits](#credits)
- - [Tests](#tests)
  - [Questions](#questions)
+ - [Tests](#tests)
 
 ## Installation 
- Please install Node.js then download the contents of this repository.
+ To install this application, please ensure you are using the current LTS version of Node.js found on the Node.js site. Download this repositor once Node.js is installed then run npm init to gather the required packages. Once you have run npm init, you can run "node index.js in the root of the downloaded folder to run the application.
 
 ## Usage 
- Once installed, you can run npm init, then run "node index"  in order to run the program.
+ This application will provide you with prompts once you run "node index.js". These prompts will take user input to fill in the README file for your project. 
  
- ![screen shot of README Generator](/assets/images/screenshot.png)
+ ![screen shot of README Generator](/assets/images/screenshot.png) 
 
 ## Questions 
- - [Marielle Nwana](https://github.com/mnwana) 
- 
- - [Molly](https://github.com/mcat123) 
+ - [mnwana](https://github.com/mnwana) 
 
- - Website: [mariellenwana.com](mariellenwana.com)
  - Email me at [mariellenwana@gmail.com](mailto:mariellenwana@gmail.com) with any questions
 
 ## License 
  MIT
 
----
-
 
 
 ## Tests
- ### Test 1 
- please test this works! 
+ ### Mockdata 
+ Run 'node index mock' to test this application using mock data. 
  
 

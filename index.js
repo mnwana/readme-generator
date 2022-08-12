@@ -224,11 +224,27 @@ const promptTests = (readmeData) => {
         type: "input",
         name: "name",
         message: "What is the test name?",
+        validate: (nameInput) => {
+          if (nameInput) {
+            return true;
+          } else {
+            console.log("Please enter a test name");
+            return false;
+          }
+        },
       },
       {
         type: "input",
         name: "text",
         message: "What are the instructions to run the test?",
+        validate: (testText) => {
+          if (testText) {
+            return true;
+          } else {
+            console.log("Please enter test instructions");
+            return false;
+          }
+        },
       },
       // confirm if they want to add additional tests
 
@@ -268,27 +284,60 @@ function writeToFile(fileName, fileData) {
 
 //function to initialize app
 function init() {
-  // get user input for project
-  promptProject()
-    // get user input for contributors
-    .then(promptContributors)
-    // get user input for tests
-    .then(promptTests)
-    .then((readmeData) => {
-      console.log(readmeData);
-      // get readme template from inputs
-      return generateMarkdown(readmeData);
-    })
-    // write readme to file
-    .then((readmeContent) => {
-      return writeToFile("/README.md", readmeContent);
-    });
+  // if user inputs mock in command line arguments, run app using mock data
+  if (process.argv[2] == "mock") {
+    console.log(mockData);
+    return writeToFile("README.md", generateMarkdown(mockData));
+  } else {
+    // get user input for project
+    promptProject()
+      // get user input for contributors
+      .then(promptContributors)
+      // get user input for tests
+      .then(promptTests)
+      .then((readmeData) => {
+        console.log(readmeData);
+        // get readme template from inputs
+        return generateMarkdown(readmeData);
+      })
+      // write readme to file
+      .then((readmeContent) => {
+        return writeToFile("README.md", readmeContent);
+      });
+  }
 }
 
-// function mockInit() {
-//   console.log(mockData);
-//   return writeToFile("README.md", generateMarkdown(mockData));
-// }
+// mock data used by test run
+const mockData = {
+  projectTitle: "README Generator",
+  description:
+    "a command-line application that dynamically generates a professional README.md file from a user's input using the Inquirer package",
+  installation:
+    'To install this application, please ensure you are using the current LTS version of Node.js found on the Node.js site. Download this repositor once Node.js is installed then run npm init to gather the required packages. Once you have run npm init, you can run "node index.js in the root of the downloaded folder to run the application.',
+  usage:
+    'This application will provide you with prompts once you run "node index.js". These prompts will take user input to fill in the README file for your project. ',
+  screenshotConfirm: true,
+  screenshotLocation: "assets/images/screenshot.png",
+  contribyte:
+    "You can contribute by creating branches or forks of this code and making requests to merge into the main branch. You can also make GitHub issues directly within this repository.",
+  confirmEmail: true,
+  contactEmail: "mariellenwana@gmail.com",
+  license: "MIT",
+  contributors: [
+    {
+      name: "Marielle Nwana",
+      username: "mnwana",
+      confirmAddCont: false,
+    },
+  ],
+  tests: [
+    {
+      name: "Mockdata",
+      text: "Run 'node index mock' to test this application using mock data.",
+      confirmAddTest: false,
+    },
+  ],
+};
 
 // Function call to initialize app
 init();

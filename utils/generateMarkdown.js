@@ -44,20 +44,20 @@ function renderContents(data) {
   if (data.usage) {
     contents += `\n - [Usage](#usage)`;
   }
-  if (data.contributors) {
-    contents += `\n - [Credits](#credits)`;
-  }
+  // if (data.contributors) {
+  //   contents += `\n - [Credits](#credits)`;
+  // }
   if (data.licenseChoice) {
     contents += `\n - [License](#license)`;
   }
   if (data.contribute) {
     contents += `\n - [Contributing](#contributing)`;
   }
-  if (data.tests) {
-    contents += `\n - [Tests](#tests)`;
-  }
   if (data.confirmEmail || data.confirmSite) {
     contents += `\n - [Questions](#questions)`;
+  }
+  if (data.tests) {
+    contents += `\n - [Tests](#tests)`;
   }
   return contents;
 }
@@ -87,7 +87,7 @@ function renderUsage(data) {
     usage += `## Usage \n ${data.usage}`;
   }
   if (data.screenshotConfirm) {
-    usage += `\n \n ![screen shot of ${data.projectTitle}](/${data.screenshotLocation})`;
+    usage += `\n \n ![screen shot of ${data.projectTitle}](/${data.screenshotLocation}) `;
   }
   return usage;
 }
@@ -96,8 +96,11 @@ function renderUsage(data) {
 function renderContributors(data) {
   var contributorsText = `## Questions`;
   if (data.contributors.length > 0) {
-    data.contributors.forEach(contributor => contributorsText += ` \n - [${contributor.name}](https://github.com/${contributor.username}) \n`);
+    data.contributors.forEach(contributor => contributorsText += ` \n - [${contributor.username}](https://github.com/${contributor.username}) \n`);
   }
+  // if (data.contributors.length > 0) {
+  //   data.contributors.forEach(contributor => contributorsText += ` \n - [${contributor.name}](https://github.com/${contributor.username}) \n`);
+  // }
   if (data.confirmEmail || data.confirmSite) {
     if (data.contactSite) {
       contributorsText += `\n - Website: [${data.contactSite}](${data.contactSite})`;
@@ -168,9 +171,9 @@ function generateMarkdown(data) {
   return `
 # ${data.projectTitle}
 
-${renderDescription(data.description)}
-
 ${renderLicenseBadge(data.license)}
+
+${renderDescription(data.description)}
 
 ${renderContents(data)}
 
@@ -181,7 +184,6 @@ ${renderUsage(data)}
 ${renderContributors(data)}
 
 ${renderLicense(data.license, data.licenseFreeform)}
-
 
 ${renderContribute(data.contribute)}
 
