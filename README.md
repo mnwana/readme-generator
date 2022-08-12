@@ -22,7 +22,7 @@
  ![screen shot of README Generator](/assets/images/screenshot.png) 
  
  
- [video walkthrough of README Generator](/assets/video/README_Gen_Demo.mov) 
+ [video walkthrough of README Generator](/assets/videos/README_Gen_Demo.mov) 
 
 ## Questions 
  - [mnwana](https://github.com/mnwana) 
