@@ -5,7 +5,7 @@
  ![MIT license badge](https://img.shields.io/badge/license-mit-blue)
 
 ## Description 
- a command-line application that dynamically generates a professional README.md file from a user's input using the Inquirer package
+ A command-line application that dynamically generates a professional README.md file from a user's input using the Inquirer package
 
 ## Table of Contents
  - [Installation](#installation)
@@ -14,10 +14,10 @@
  - [Tests](#tests)
 
 ## Installation 
- To install this application, please ensure you are using the current LTS version of Node.js found on the Node.js site. Download this repositor once Node.js is installed then run npm init to gather the required packages. Once you have run npm init, you can run "node index.js in the root of the downloaded folder to run the application.
+ To install this application, please ensure you are using the current LTS version of Node.js found on the Node.js site. Download this repository once Node.js. Once downloaded, you can run "node index.js" in the root of the downloaded folder to run the application.
 
 ## Usage 
- This application will provide you with prompts once you run "node index.js". These prompts will take user input to fill in the README file for your project. 
+ This application will provide you with prompts once you run "node index.js". These prompts will take user input to fill in the README file for your project.
  
  ![screen shot of README Generator](/assets/images/screenshot.png) 
 

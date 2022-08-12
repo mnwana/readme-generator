@@ -296,7 +296,6 @@ function init() {
       // get user input for tests
       .then(promptTests)
       .then((readmeData) => {
-        console.log(readmeData);
         // get readme template from inputs
         return generateMarkdown(readmeData);
       })
@@ -311,11 +310,11 @@ function init() {
 const mockData = {
   projectTitle: "README Generator",
   description:
-    "a command-line application that dynamically generates a professional README.md file from a user's input using the Inquirer package",
+    "A command-line application that dynamically generates a professional README.md file from a user's input using the Inquirer package",
   installation:
-    'To install this application, please ensure you are using the current LTS version of Node.js found on the Node.js site. Download this repositor once Node.js is installed then run npm init to gather the required packages. Once you have run npm init, you can run "node index.js in the root of the downloaded folder to run the application.',
+    'To install this application, please ensure you are using the current LTS version of Node.js found on the Node.js site. Download this repository once Node.js. Once downloaded, you can run "node index.js" in the root of the downloaded folder to run the application.',
   usage:
-    'This application will provide you with prompts once you run "node index.js". These prompts will take user input to fill in the README file for your project. ',
+    'This application will provide you with prompts once you run "node index.js". These prompts will take user input to fill in the README file for your project.',
   screenshotConfirm: true,
   screenshotLocation: "assets/images/screenshot.png",
   contribyte:
