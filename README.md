@@ -20,6 +20,8 @@
  This application will provide you with prompts once you run "node index.js". These prompts will take user input to fill in the README file for your project.
  
  ![screen shot of README Generator](/assets/images/screenshot.png) 
+ 
+  [Video of a walkthrough](/assets/videos/README_Gen_Demo.mov) 
 
 ## Questions 
  - [mnwana](https://github.com/mnwana) 
